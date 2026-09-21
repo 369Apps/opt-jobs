@@ -3,177 +3,200 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OPT Jobs - TechGPS | Entry-level tech jobs for OPT students</title>
-<meta name="description" content="Free entry-level tech jobs picked for OPT students. New jobs every morning. Join the community, get help applying.">
+<title>Entry Level Jobs | Turn your job hunt into a game</title>
+<meta name="description" content="Free entry-level tech jobs for OPT students, turned into a game. Build your player profile, get matched jobs, earn XP for every application.">
 <style>
-  :root { --ink:#1a1a1a; --muted:#5c5c5c; --accent:#0b5fff; --bg:#ffffff; --card:#f6f7f9; --line:#e8eaed; }
+  :root { --ink:#191423; --muted:#6b6478; --accent:#6c3df5; --accent2:#ff5c8a;
+          --bg:#faf8ff; --card:#ffffff; --line:#e9e2f7; --gold:#ffb020; }
   * { box-sizing:border-box; }
-  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:var(--ink); background:var(--bg); line-height:1.6; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+         color:var(--ink); background:var(--bg); line-height:1.6; }
   .wrap { max-width:760px; margin:0 auto; padding:0 20px; }
-  header { border-bottom:1px solid var(--line); padding:14px 0; position:sticky; top:0; background:#fff; z-index:10; }
-  header .wrap { display:flex; justify-content:space-between; align-items:center; }
+  header.topbar { border-bottom:1px solid var(--line); padding:12px 0; position:sticky; top:0;
+                  background:rgba(250,248,255,.96); z-index:20; backdrop-filter:blur(6px); }
+  header .wrap { display:flex; justify-content:space-between; align-items:center; gap:10px; }
   .brand { font-weight:800; font-size:18px; }
-  .brand span { color:var(--accent); }
-  .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; padding:12px 22px; border-radius:10px; }
-  .btn.small { padding:8px 16px; font-size:14px; }
+  .brand .game { color:var(--accent); }
+  .xp-chip { background:var(--ink); color:#fff; font-size:13px; font-weight:700;
+             padding:8px 14px; border-radius:999px; white-space:nowrap; }
+  .xpbar { height:8px; background:var(--line); }
+  .xpbar div { height:100%; width:0%; border-radius:0 8px 8px 0;
+               background:linear-gradient(90deg,var(--accent),var(--accent2)); transition:width .6s; }
+  .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none;
+         font-weight:700; padding:13px 24px; border-radius:12px; border:none; cursor:pointer; font-size:16px; }
+  .btn.small { padding:9px 16px; font-size:14px; }
   .btn.ghost { background:#fff; color:var(--accent); border:2px solid var(--accent); }
-  .hero { padding:64px 0 40px; }
-  .hero h1 { font-size:clamp(30px,6vw,46px); line-height:1.15; margin:0 0 16px; }
-  .hero p { font-size:19px; color:var(--muted); margin:0 0 24px; }
-  .eyebrow { text-transform:uppercase; letter-spacing:2px; font-size:12px; font-weight:700; color:var(--accent); margin-bottom:12px; }
-  section { padding:36px 0; border-top:1px solid var(--line); }
-  h2 { font-size:26px; margin:0 0 12px; }
-  .steps { display:grid; gap:12px; margin-top:16px; }
-  .step { background:var(--card); border-radius:12px; padding:18px; }
-  .step .n { font-weight:800; color:var(--accent); }
-  .value-grid { display:grid; gap:12px; margin-top:16px; }
-  .value { background:var(--card); border-radius:12px; padding:18px; }
-  .value strong { display:block; margin-bottom:4px; }
-  .jobs { display:grid; gap:10px; margin-top:16px; }
-  .job { display:block; background:var(--card); border-radius:12px; padding:16px 18px; text-decoration:none; color:inherit; border:1px solid transparent; }
-  .job:hover { border-color:var(--accent); }
+  .btn:disabled { opacity:.55; cursor:default; }
+  .hero { padding:56px 0 32px; text-align:center; }
+  .hero h1 { font-size:clamp(32px,6vw,48px); line-height:1.12; margin:0 0 14px; }
+  .hero h1 .hl { color:var(--accent); }
+  .hero p.sub { font-size:19px; color:var(--muted); margin:0 0 22px; }
+  .eyebrow { text-transform:uppercase; letter-spacing:2px; font-size:12px; font-weight:700;
+             color:var(--accent); margin-bottom:12px; }
+  .hero-cta { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  .stat-row { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:22px; }
+  .stat { background:var(--card); border:1px solid var(--line); border-radius:12px;
+          padding:10px 18px; font-weight:700; font-size:15px; }
+  .stat small { display:block; font-weight:400; color:var(--muted); font-size:12px; }
+  section.block { padding:32px 0; border-top:1px solid var(--line); }
+  h2 { font-size:26px; margin:0 0 10px; }
+  .muted { color:var(--muted); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:24px; margin-top:16px; }
+  .field { margin-bottom:14px; }
+  .field label { display:block; font-weight:700; margin-bottom:6px; font-size:15px; }
+  .field input, .field select { width:100%; padding:12px; border:1px solid var(--line);
+                                border-radius:10px; font-size:16px; background:#fff; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chip { border:2px solid var(--line); background:#fff; border-radius:999px;
+          padding:8px 16px; font-size:14px; font-weight:600; cursor:pointer; }
+  .chip.on { border-color:var(--accent); background:#f1eafe; color:var(--accent); }
+  .meter { height:14px; background:var(--line); border-radius:999px; overflow:hidden; margin-top:14px; }
+  .meter div { height:100%; width:0%; border-radius:999px;
+               background:linear-gradient(90deg,var(--gold),var(--accent2)); transition:width .5s; }
+  .meter-label { font-weight:700; margin-top:8px; }
+  .jobs { display:grid; gap:10px; margin-top:14px; }
+  .job { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
   .job-top { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
   .job-top strong { font-size:16px; }
   .sal { color:var(--accent); font-weight:700; white-space:nowrap; }
   .job-meta { color:var(--muted); font-size:14px; margin-top:4px; }
-  .note { font-size:14px; color:var(--muted); }
-  .faq details { background:var(--card); border-radius:10px; padding:14px 18px; margin-bottom:10px; }
-  .faq summary { font-weight:700; cursor:pointer; }
-  footer { border-top:1px solid var(--line); padding:28px 0 48px; color:var(--muted); font-size:14px; }
+  .authtag { display:inline-block; font-size:12px; font-weight:700; color:#9a6b00; background:#fff4d6;
+             border-radius:6px; padding:2px 8px; margin-top:8px; }
+  .matchtag { display:inline-block; font-size:12px; font-weight:700; color:var(--accent); background:#f1eafe;
+              border-radius:6px; padding:2px 8px; margin-top:8px; margin-right:6px; }
+  .job-actions { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+  .badges { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:10px; margin-top:14px; }
+  .badge { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px; text-align:center; }
+  .badge .ico { font-size:28px; }
+  .badge.locked { opacity:.45; filter:grayscale(1); }
+  .badge b { display:block; margin-top:6px; font-size:14px; }
+  .badge small { color:var(--muted); font-size:12px; }
   .cta-band { background:var(--ink); color:#fff; border-radius:16px; padding:36px 28px; text-align:center; }
   .cta-band h2 { color:#fff; }
-  .cta-band p { color:#cfd3d8; }
-  .services { background:var(--card); border-radius:16px; padding:28px; }
+  .cta-band p { color:#cfc9de; }
   .services ul { margin:12px 0 20px; padding-left:20px; }
   .services li { margin-bottom:8px; }
-  .leadbox { background:#fff; border:2px solid var(--line); border-radius:16px; padding:28px; }
   .leadbox form { display:grid; gap:10px; margin-top:16px; }
   .leadbox input, .leadbox select { padding:12px; border:1px solid var(--line); border-radius:10px; font-size:16px; width:100%; }
-  .leadbox button { background:var(--accent); color:#fff; border:none; padding:14px; border-radius:10px; font-weight:700; font-size:16px; cursor:pointer; }
+  .leadbox button { background:var(--accent); color:#fff; border:none; padding:14px; border-radius:10px;
+                    font-weight:700; font-size:16px; cursor:pointer; }
+  .note { font-size:14px; color:var(--muted); }
+  .faq details { background:var(--card); border:1px solid var(--line); border-radius:10px;
+                 padding:14px 18px; margin-bottom:10px; }
+  .faq summary { font-weight:700; cursor:pointer; }
+  footer { border-top:1px solid var(--line); padding:28px 0 48px; color:var(--muted); font-size:14px; text-align:center; }
+  #toast { position:fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(80px);
+           background:var(--ink); color:#fff; font-weight:700; padding:12px 22px; border-radius:999px;
+           transition:transform .3s; z-index:50; opacity:0; }
+  #toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+  .lvlup { animation:pop .5s; }
+  @keyframes pop { 0%{transform:scale(1)} 40%{transform:scale(1.25)} 100%{transform:scale(1)} }
 </style>
 </head>
 <body>
-<header>
+<header class="topbar">
   <div class="wrap">
-    <div class="brand">OPT Jobs <span>- TechGPS</span></div>
-    <!-- PASTE the real WhatsApp community invite link in both hrefs marked https://chat.whatsapp.com/IakEkp4uZoxBWKydIFFLI8 -->
-    <a class="btn small" href="https://chat.whatsapp.com/IakEkp4uZoxBWKydIFFLI8">Join free</a>
+    <div class="brand">🎮 Entry Level <span class="game">Jobs</span></div>
+    <div class="xp-chip" id="xpChip">Level 1 · Rookie · 0 XP</div>
   </div>
+  <div class="xpbar"><div id="xpFill"></div></div>
 </header>
 
 <div class="wrap">
   <div class="hero">
-    <div class="eyebrow">For OPT students, free</div>
-    <h1>Get your first US job without the 500-application grind.</h1>
-    <p>We post entry-level tech jobs that work with OPT, every weekday morning. Free to browse. Free to join. Use the site, get value, then come talk to us when you want help.</p>
-    <a class="btn" href="https://chat.whatsapp.com/IakEkp4uZoxBWKydIFFLI8">Join the community</a>
-    <p class="note" style="margin-top:12px">Free. New jobs every weekday morning. No spam, just jobs.</p>
+    <div class="eyebrow">For OPT students · Free</div>
+    <h1>Turn your job hunt <span class="hl">into a game.</span></h1>
+    <p class="sub">Build your player profile, get jobs matched to you, and earn XP for every application. Small wins every day beat 500 random applications.</p>
+    <div class="hero-cta">
+      <a class="btn" href="#play">▶ Start playing</a>
+      <a class="btn ghost" href="https://chat.whatsapp.com/IakEkp4uZoxBWKydIFFLI8" data-join>Join the community</a>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><span id="statStreak">0</span><small>day streak 🔥</small></div>
+      <div class="stat"><span id="statApplied">0</span><small>applications ✅</small></div>
+      <div class="stat"><span id="statStrength">0%</span><small>profile strength 💪</small></div>
+    </div>
   </div>
 
-  <section>
-    <h2>What you get here, free</h2>
-    <div class="value-grid">
-      <div class="value"><strong>1. Daily OPT-friendly jobs</strong>We read the fine print so you do not have to. Every posting is checked for work authorization language before it goes up.</div>
-      <div class="value"><strong>2. Plain English translations</strong>"Authorized to work" means your EAD counts. "No sponsorship in future" means fine for now, plan ahead. We spell it out.</div>
-      <div class="value"><strong>3. A community that stays useful</strong>One WhatsApp community. Jobs every morning. Resume tips. No noise.</div>
+  <section class="block" id="play">
+    <div class="eyebrow">Step 1 · Create your player</div>
+    <h2>Who is playing?</h2>
+    <p class="muted">Fill this out once. The stronger your profile, the better your job matches. Complete it for <b>+50 XP</b>.</p>
+    <div class="card">
+      <form id="profileForm" autocomplete="off">
+        <div class="field">
+          <label>Player name</label>
+          <input id="fName" placeholder="What should we call you?">
+        </div>
+        <div class="field">
+          <label>Target role</label>
+          <select id="fRole">
+            <option value="">Pick one...</option>
+        <option value="Software Engineer">Software Engineer</option>
+        <option value="QA Engineer">QA Engineer</option>
+        <option value="Data Analyst">Data Analyst</option>
+        <option value="IT Support">IT Support</option>
+        <option value="Product">Product</option>
+        <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Your skills (tap all that apply)</label>
+          <div class="chips" id="skillChips">
+        <button type="button" class="chip" data-skill="Python">Python</button>
+        <button type="button" class="chip" data-skill="Java">Java</button>
+        <button type="button" class="chip" data-skill="JavaScript">JavaScript</button>
+        <button type="button" class="chip" data-skill="TypeScript">TypeScript</button>
+        <button type="button" class="chip" data-skill="React">React</button>
+        <button type="button" class="chip" data-skill="SQL">SQL</button>
+        <button type="button" class="chip" data-skill="AWS">AWS</button>
+        <button type="button" class="chip" data-skill="Docker">Docker</button>
+        <button type="button" class="chip" data-skill="QA / Testing">QA / Testing</button>
+        <button type="button" class="chip" data-skill="Excel">Excel</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>City, State</label>
+          <input id="fCity" placeholder="Example: Dallas, TX (or Remote)">
+        </div>
+        <div class="field">
+          <label>OPT start date</label>
+          <input id="fEad" placeholder="Example: Jan 2026">
+        </div>
+        <div class="field">
+          <label>Work authorization</label>
+          <select id="fAuth">
+            <option value="">Pick one...</option>
+        <option value="OPT">OPT</option>
+        <option value="STEM OPT">STEM OPT</option>
+        <option value="CPT">CPT</option>
+        <option value="Other">Other</option>
+          </select>
+        </div>
+        <button class="btn" type="submit">Save player</button>
+      </form>
+      <div class="meter"><div id="strengthFill"></div></div>
+      <p class="meter-label" id="strengthLabel">Profile strength: 0%</p>
     </div>
   </section>
 
-  <section>
-    <h2>How it works</h2>
-    <div class="steps">
-      <div class="step"><span class="n">01 - </span><strong>Get value from the site.</strong> Browse today's picks below. Open the posting, apply direct. No account, no fee.</div>
-      <div class="step"><span class="n">02 - </span><strong>Join and stay in the community.</strong> Jobs land in WhatsApp every weekday morning so you never miss a fresh posting.</div>
-      <div class="step"><span class="n">03 - </span><strong>DM us when you want more.</strong> Resume review, application help, interview prep. DM Bobby inside the community and we will take it from there.</div>
-    </div>
-    <p style="margin-top:16px"><a class="btn" href="https://chat.whatsapp.com/IakEkp4uZoxBWKydIFFLI8">Join OPT Jobs - TechGPS</a></p>
+  <section class="block">
+    <div class="eyebrow">Step 2 · Play the board</div>
+    <h2>Your matched jobs</h2>
+    <p class="muted" id="matchNote">Set your target role above and we will sort the best fits first.</p>
+    <div class="jobs" id="jobs"></div>
+    <p style="margin-top:14px"><button class="btn ghost" id="showAllBtn">Show all jobs</button></p>
+    <p class="note">Every posting was checked for work authorization language. "No red flags" means it does not block OPT outright. Always confirm with the recruiter.</p>
   </section>
 
-  <section>
-    <div class="eyebrow">Updated Sep 21, 2026</div>
-    <h2>Today's OPT-friendly picks</h2>
-    <p class="note">Checked for work authorization language. "No red flags" means the posting does not block OPT outright. Always confirm with the recruiter.</p>
-    <div class="jobs">
-
-      <a class="job" href="https://www.linkedin.com/jobs/view/4455784915" target="_blank" rel="noopener">
-        <div class="job-top"><strong>Software Development Engineer - 2026 (US)</strong><span class="sal">$110,500-$160,000</span></div>
-        <div class="job-meta">Amazon &middot; Seattle, WA &middot; posted 1 week ago</div>
-      </a>
-
-      <a class="job" href="https://www.linkedin.com/jobs/view/4448758674" target="_blank" rel="noopener">
-        <div class="job-top"><strong>Software Engineer, Early Career, Campus</strong><span class="sal">$123,000-$174,000 + 15% bonus + equity</span></div>
-        <div class="job-meta">Google &middot; New York, NY &middot; posted 2 days ago</div>
-      </a>
-
-      <a class="job" href="https://www.linkedin.com/jobs/view/4466614314" target="_blank" rel="noopener">
-        <div class="job-top"><strong>Software QA Engineer - New College Grad 2026</strong><span class="sal">$100,000-$166,750 + equity</span></div>
-        <div class="job-meta">NVIDIA AI &middot; Santa Clara, CA &middot; posted 4 days ago</div>
-      </a>
-
-      <a class="job" href="https://www.linkedin.com/jobs/view/4458425777" target="_blank" rel="noopener">
-        <div class="job-top"><strong>Entry Level QA/Test Developer</strong><span class="sal">$74,160-$111,240/yr</span></div>
-        <div class="job-meta">IBM &middot; Tucson, AZ &middot; posted 2 days ago</div>
-      </a>
-
-      <a class="job" href="https://www.linkedin.com/jobs/view/4469213229" target="_blank" rel="noopener">
-        <div class="job-top"><strong>Data Analyst I</strong><span class="sal">$21.78-$30.53/hr</span></div>
-        <div class="job-meta">University of Rochester &middot; Henrietta, NY &middot; posted 3 days ago</div>
-      </a>
-
-      <a class="job" href="https://www.linkedin.com/jobs/view/4469549280" target="_blank" rel="noopener">
-        <div class="job-top"><strong>Data Operations Analyst</strong></div>
-        <div class="job-meta">CBRE &middot; Phoenix, AZ &middot; posted 2 days ago</div>
-      </a>
-
-      <a class="job" href="https://www.linkedin.com/jobs/view/4468892529" target="_blank" rel="noopener">
-        <div class="job-top"><strong>Analyst, Newsroom Data</strong><span class="sal">$90,000-$100,000</span></div>
-        <div class="job-meta">The Wall Street Journal &middot; New York, NY &middot; posted 6 hours ago</div>
-      </a>
-
-      <a class="job" href="https://www.linkedin.com/jobs/view/4469917935" target="_blank" rel="noopener">
-        <div class="job-top"><strong>Junior Helpdesk Support</strong><span class="sal">$55,000-$60,000</span></div>
-        <div class="job-meta">Cantor Fitzgerald &middot; New York, NY &middot; posted 3 hours ago</div>
-      </a>
-
-      <a class="job" href="https://www.linkedin.com/jobs/view/4466634277" target="_blank" rel="noopener">
-        <div class="job-top"><strong>Junior IT Analyst</strong><span class="sal">$60,000-$70,000</span></div>
-        <div class="job-meta">ALICE + OLIVIA &middot; New York, NY &middot; posted 3 days ago</div>
-      </a>
-
-      <a class="job" href="https://www.linkedin.com/jobs/view/4458341951" target="_blank" rel="noopener">
-        <div class="job-top"><strong>IT Support Technician I</strong><span class="sal">Not shown (competitive base + bonus)</span></div>
-        <div class="job-meta">Riot Platforms, Inc. &middot; Austin, TX &middot; posted 4 days ago</div>
-      </a>
-
-      <a class="job" href="https://www.dice.com/job-detail/2fd7216e-3605-4231-b47b-90de3770a6b4" target="_blank" rel="noopener">
-        <div class="job-top"><strong>Entry Level Software Engineer</strong></div>
-        <div class="job-meta">AutoStore &middot; Atlanta, GA &middot; posted 5 days ago</div>
-      </a>
-
-      <a class="job" href="https://www.dice.com/job-detail/a235bc5c-f029-418e-ac35-e17907f198fd" target="_blank" rel="noopener">
-        <div class="job-top"><strong>Jr. Software Engineer</strong><span class="sal">$33.00-$38.00/hr</span></div>
-        <div class="job-meta">Axos Bank &middot; San Diego, CA &middot; posted 23 hours ago</div>
-      </a>
-
-      <a class="job" href="https://www.dice.com/job-detail/ca8ff416-c79a-4216-83d3-19c3cc02d7ab" target="_blank" rel="noopener">
-        <div class="job-top"><strong>Junior Software Engineer</strong><span class="sal">$52,000-$91,000/yr</span></div>
-        <div class="job-meta">State Street Corporation &middot; Quincy, MA &middot; posted 2 days ago</div>
-      </a>
-
-      <a class="job" href="https://www.dice.com/job-detail/63590e9c-6b79-4677-bfc9-6113b677f510" target="_blank" rel="noopener">
-        <div class="job-top"><strong>Aspire Tech Graduate Software Engineer I</strong><span class="sal">$59,200-$98,600/yr</span></div>
-        <div class="job-meta">LexisNexis &middot; Raleigh, NC &middot; posted 4 days ago</div>
-      </a>
-
-      <a class="job" href="https://www.dice.com/job-detail/d2bb5180-0a87-4f6a-9d37-82a5e97bf9c4" target="_blank" rel="noopener">
-        <div class="job-top"><strong>TJJD Data Analyst II</strong><span class="sal">$5,000-$5,416.66/mo</span></div>
-        <div class="job-meta">CAPPS &middot; Austin, TX &middot; posted 2 days ago</div>
-      </a>
-    </div>
-    <p class="note" style="margin-top:16px">Showing 15 of 51 tracked jobs. The full list drops in the community every morning.</p>
+  <section class="block">
+    <div class="eyebrow">Step 3 · Keep the streak alive</div>
+    <h2>Streaks and badges</h2>
+    <p class="muted">New jobs drop every weekday morning. Check in daily to keep your streak and earn XP. Mark every application with the <b>I applied</b> button for <b>+25 XP</b> each.</p>
+    <div class="badges" id="badges"></div>
   </section>
 
-  <section>
+  <section class="block">
     <h2>Reading the fine print, translated</h2>
     <p><strong>"Must be authorized to work in the US."</strong> Good news. Your OPT EAD is work authorization. You qualify.</p>
     <p><strong>"No sponsorship now or in the future."</strong> You can work there on OPT, but they will not do H-1B later. Fine for a first job, plan your next move.</p>
@@ -181,25 +204,24 @@
     <p><strong>"No OPT/CPT."</strong> Skip it. They said the quiet part out loud.</p>
   </section>
 
-  <section>
-    <div class="services">
-      <div class="eyebrow">When you want more than the list</div>
-      <h2>DM us for hands-on help</h2>
-      <p>The site and community are free forever. When you want us in your corner, DM Bobby inside the community:</p>
+  <section class="block">
+    <div class="card services">
+      <div class="eyebrow">When you want more than the game</div>
+      <h2>DM Bobby for hands-on help</h2>
+      <p>The site and community are free. When you want someone in your corner, DM Bobby inside the community:</p>
       <ul>
         <li><strong>Resume review</strong> rewritten for US entry-level roles</li>
         <li><strong>Application game plan</strong> which jobs to hit first, in what order</li>
         <li><strong>Interview prep</strong> mock rounds with engineers who hire</li>
         <li><strong>Offer guidance</strong> E-Verify, STEM OPT, start dates</li>
       </ul>
-      <a class="btn" href="https://chat.whatsapp.com/IakEkp4uZoxBWKydIFFLI8">Join, then DM Bobby</a>
-      <p class="note" style="margin-top:12px">TechGPS places engineers with US companies every day. This is what we do.</p>
+      <a class="btn" href="https://chat.whatsapp.com/IakEkp4uZoxBWKydIFFLI8" data-join>Join, then DM Bobby</a>
     </div>
   </section>
 
-  <section>
-    <div class="leadbox">
-      <div class="eyebrow">Free starter kit, lead magnet</div>
+  <section class="block">
+    <div class="card leadbox">
+      <div class="eyebrow">Free starter kit</div>
       <h2>Get the OPT Job Starter Kit</h2>
       <p>Drop your details and we will send you the 7 point resume checklist plus tomorrow's job list. Free. No spam.</p>
       <form id="leadform">
@@ -223,51 +245,259 @@
     </div>
   </section>
 
-  <section>
+  <section class="block">
     <div class="cta-band">
       <h2>Get tomorrow's jobs in your pocket</h2>
-      <p>One WhatsApp community. New OPT-friendly jobs every weekday morning. Stay for the jobs, DM when you need us.</p>
-      <a class="btn" href="https://chat.whatsapp.com/IakEkp4uZoxBWKydIFFLI8">Join OPT Jobs - TechGPS</a>
+      <p>One WhatsApp community. New entry-level jobs every weekday morning. Stay for the jobs, DM when you need us. Joining earns you the <b>Squad Up</b> badge and <b>+50 XP</b>.</p>
+      <a class="btn" href="https://chat.whatsapp.com/IakEkp4uZoxBWKydIFFLI8" data-join>Join Entry Level Jobs</a>
     </div>
   </section>
 
-  <section class="faq">
+  <section class="block faq">
     <h2>Questions, answered</h2>
-    <details><summary>Is this really free?</summary><p>Yes. The site and the community are free. We make our money placing experienced engineers, not charging students. If you want 1 on 1 help, DM us and we will talk about options.</p></details>
+    <details><summary>Is this really free?</summary><p>Yes. The site and the community are free. If you want 1 on 1 help, DM Bobby and we will talk about options.</p></details>
     <details><summary>Do you apply for me?</summary><p>No. You apply directly to the company. We find the jobs, filter them for OPT, and help you put together a strong application.</p></details>
     <details><summary>What if a company asks about sponsorship?</summary><p>On OPT you do not need sponsorship, you have an EAD. Say exactly that: "I am authorized to work in the US through OPT, no sponsorship required at this time." For STEM OPT extension, the company needs to be enrolled in E-Verify, ask before you accept.</p></details>
     <details><summary>I'm on STEM OPT or my OPT starts later. Does this still help?</summary><p>Yes. The same entry-level roles fit, and the work-auth notes flag which employers play the long game.</p></details>
-    <details><summary>Who runs this?</summary><p>Bobby's team at TechGPS, a staffing firm in Alpharetta, GA that places engineers with US companies. The job hunt is the same muscle we use every day.</p></details>
+    <details><summary>Who runs this?</summary><p>Bobby and his team in Alpharetta, GA. We place engineers with US companies every day, and we built this game for OPT students.</p></details>
   </section>
 </div>
 
 <footer>
   <div class="wrap">
-    OPT Jobs - TechGPS &middot; Alpharetta, GA<br>
+    🎮 Entry Level Jobs · Alpharetta, GA<br>
     Job data is refreshed every weekday morning. Listings belong to the posting companies; apply on their sites.
   </div>
 </footer>
+<div id="toast"></div>
 <script>
-document.getElementById('leadform').addEventListener('submit', function(e){
-  e.preventDefault();
-  var f = e.target;
-  var name = f.name.value.trim();
-  var email = f.email.value.trim();
-  var phone = f.phone.value.trim();
-  var city = f.city.value.trim();
-  var ead = f.ead.value.trim();
-  var role = f.role.value;
-  var subject = encodeURIComponent('New OPT lead: ' + name);
-  var body = encodeURIComponent('Name: ' + name + '
-Email: ' + email + '
-Phone: ' + phone + '
-City: ' + city + '
-OPT start: ' + ead + '
-Target role: ' + role + '
-Source: opt jobs website starter kit');
-  window.location.href = 'mailto:bobby@nobsai.com?subject=' + subject + '&body=' + body;
-  document.getElementById('leadnote').textContent = 'Thanks ' + name.split(' ')[0] + '. Your email app should open now. Also join the WhatsApp community so you get tomorrow’s jobs.';
+var JOBS = [{"title": "Software Development Engineer - 2026 (US)", "company": "Amazon", "location": "Seattle, WA", "url": "https://www.linkedin.com/jobs/view/4455784915", "posted": "1 week ago", "salary": "$110,500-$160,000", "auth": "None stated (EEO language only)"}, {"title": "Software Engineer, Early Career, Campus", "company": "Google", "location": "New York, NY", "url": "https://www.linkedin.com/jobs/view/4448758674", "posted": "2 days ago", "salary": "$123,000-$174,000 + 15% bonus + equity", "auth": "None stated (EEO language only)"}, {"title": "Software QA Engineer - New College Grad 2026", "company": "NVIDIA AI", "location": "Santa Clara, CA", "url": "https://www.linkedin.com/jobs/view/4466614314", "posted": "4 days ago", "salary": "$100,000-$166,750 + equity", "auth": "None stated (EEO language only)"}, {"title": "Entry Level QA/Test Developer", "company": "IBM", "location": "Tucson, AZ", "url": "https://www.linkedin.com/jobs/view/4458425777", "posted": "2 days ago", "salary": "$74,160-$111,240/yr", "auth": "None stated"}, {"title": "Data Analyst I", "company": "University of Rochester", "location": "Henrietta, NY", "url": "https://www.linkedin.com/jobs/view/4469213229", "posted": "3 days ago", "salary": "$21.78-$30.53/hr", "auth": "None stated in visible portion"}, {"title": "Data Operations Analyst", "company": "CBRE", "location": "Phoenix, AZ", "url": "https://www.linkedin.com/jobs/view/4469549280", "posted": "2 days ago", "salary": "", "auth": "Must be currently authorized to work in US without need for visa sponsorship"}, {"title": "Analyst, Newsroom Data", "company": "The Wall Street Journal", "location": "New York, NY", "url": "https://www.linkedin.com/jobs/view/4468892529", "posted": "6 hours ago", "salary": "$90,000-$100,000", "auth": "None stated in visible portion"}, {"title": "Junior Helpdesk Support", "company": "Cantor Fitzgerald", "location": "New York, NY", "url": "https://www.linkedin.com/jobs/view/4469917935", "posted": "3 hours ago", "salary": "$55,000-$60,000", "auth": "None stated"}, {"title": "Junior IT Analyst", "company": "ALICE + OLIVIA", "location": "New York, NY", "url": "https://www.linkedin.com/jobs/view/4466634277", "posted": "3 days ago", "salary": "$60,000-$70,000", "auth": "None stated in visible portion"}, {"title": "IT Support Technician I", "company": "Riot Platforms, Inc.", "location": "Austin, TX", "url": "https://www.linkedin.com/jobs/view/4458341951", "posted": "4 days ago", "salary": "Not shown (competitive base + bonus)", "auth": "None stated in visible portion"}, {"title": "Entry Level Software Engineer", "company": "AutoStore", "location": "Atlanta, GA", "url": "https://www.dice.com/job-detail/2fd7216e-3605-4231-b47b-90de3770a6b4", "posted": "5 days ago", "salary": "", "auth": "None stated (EEO only)"}, {"title": "Jr. Software Engineer", "company": "Axos Bank", "location": "San Diego, CA", "url": "https://www.dice.com/job-detail/a235bc5c-f029-418e-ac35-e17907f198fd", "posted": "23 hours ago", "salary": "$33.00-$38.00/hr", "auth": "E-Verify employer; no restrictive language"}, {"title": "Junior Software Engineer", "company": "State Street Corporation", "location": "Quincy, MA", "url": "https://www.dice.com/job-detail/ca8ff416-c79a-4216-83d3-19c3cc02d7ab", "posted": "2 days ago", "salary": "$52,000-$91,000/yr", "auth": "None stated (EEO only)"}, {"title": "Aspire Tech Graduate Software Engineer I", "company": "LexisNexis", "location": "Raleigh, NC", "url": "https://www.dice.com/job-detail/63590e9c-6b79-4677-bfc9-6113b677f510", "posted": "4 days ago", "salary": "$59,200-$98,600/yr", "auth": "None stated (EEO only)"}, {"title": "TJJD Data Analyst II", "company": "CAPPS", "location": "Austin, TX", "url": "https://www.dice.com/job-detail/d2bb5180-0a87-4f6a-9d37-82a5e97bf9c4", "posted": "2 days ago", "salary": "$5,000-$5,416.66/mo", "auth": "Must be eligible to work in US without sponsorship"}, {"title": "Data Analyst I", "company": "University of Alabama", "location": "Tuscaloosa, AL", "url": "https://www.dice.com/job-detail/86de0aa3-c903-4add-bfb5-56ff531fe360", "posted": "23 hours ago", "salary": "$53,500-$66,900/yr", "auth": "None stated"}, {"title": "Senior Health Data Analyst I", "company": "Partnership Healthplan of CA", "location": "Fairfield, CA", "url": "https://www.dice.com/job-detail/d3cd98f7-abf0-4fca-b021-a245c776319e", "posted": "2 days ago", "salary": "$106,667-$138,667/yr", "auth": "None stated (Dice-listed as entry level)"}, {"title": "Analyst, Customer Data", "company": "EPRI", "location": "Knoxville, TN", "url": "https://www.dice.com/job-detail/14e850f8-b9e2-42b1-8b76-f331af9f59c4", "posted": "23 hours ago", "salary": "$56,000-$66,000/yr", "auth": "E-Verify; no restrictive language"}, {"title": "Engineer I, QA", "company": "Thermo Fisher Scientific", "location": "Rockford, IL", "url": "https://www.dice.com/job-detail/236846c3-fa9a-4940-b3a9-36bd88279c66", "posted": "4 days ago", "salary": "$48,400-$64,500/yr", "auth": "None stated (EEO only)"}, {"title": "Junior QA Analyst - Manual & Automation", "company": "Fourans (staffing)", "location": "Nashville, TN", "url": "https://www.dice.com/job-detail/acd7dff5-b7ec-4da4-933a-1e0db7b2f2df", "posted": "2 hours ago", "salary": "", "auth": "None stated"}, {"title": "Junior Quality Engineer", "company": "SGS Consulting (staffing)", "location": "Foxborough, MA", "url": "https://www.dice.com/job-detail/f8b9d91d-deec-45f6-90ef-876986763d01", "posted": "5 days ago", "salary": "$30-$37/hr", "auth": "None stated"}, {"title": "Jr QA Analyst", "company": "Apex Systems (staffing)", "location": "Boca Raton, FL", "url": "https://www.dice.com/job-detail/abe99c84-c1b0-43cf-abd4-fae98d5af682", "posted": "4 days ago", "salary": "$25-$28/hr", "auth": "None stated"}, {"title": "Junior QA Manual Tester", "company": "Ellianse LLC (staffing)", "location": "Remote", "url": "https://www.dice.com/job-detail/9428568f-fc1b-4d76-8101-754bee0bdbfa", "posted": "13 days ago", "salary": "$30-$33/hr", "auth": "None stated"}, {"title": "QA Automation Engineer", "company": "Robert Half (staffing)", "location": "Remote (Madison, WI)", "url": "https://www.dice.com/job-detail/d0c6e6e0-2830-4a53-90f4-88046ca012e3", "posted": "9 days ago", "salary": "$45-$65/hr", "auth": "Legally authorized to work in US; 3+ yrs exp required"}, {"title": "QA Analyst / Jr. Tester", "company": "Mavensoft Technologies (staffing)", "location": "Nashville, TN (hybrid)", "url": "https://www.dice.com/job-detail/3cd648b0-8c77-471a-822e-5fc228763459", "posted": "2 hours ago", "salary": "$30-$37/hr", "auth": "None stated"}, {"title": "Jr QA Analyst III", "company": "Cleo Consulting Inc. (staffing)", "location": "Nashville, TN (hybrid)", "url": "https://www.dice.com/job-detail/abe99c84-c1b0-43cf-abd4-fae98d5af682", "posted": "1 hour ago", "salary": "$35-$40/hr", "auth": "None stated; 3-5 yrs exp required despite Jr title"}];
+var WA_LINK = "https://chat.whatsapp.com/IakEkp4uZoxBWKydIFFLI8";
+var STORE_KEY = "elj_player_v1";
+var LEVELS = [[0,"Rookie"],[100,"Explorer"],[250,"Hunter"],[500,"Closer"],[1000,"Job Magnet"]];
+var BADGES = [
+  {id:"profile", icon:"🧑‍🚀", name:"Player Ready", desc:"Complete your profile"},
+  {id:"first", icon:"🎯", name:"First Shot", desc:"Mark your first application"},
+  {id:"five", icon:"🔥", name:"On Fire", desc:"Apply to 5 jobs"},
+  {id:"streak3", icon:"⚡", name:"Hot Streak", desc:"Check in 3 days in a row"},
+  {id:"community", icon:"💬", name:"Squad Up", desc:"Join the WhatsApp community"}
+];
+var ROLE_KW = {
+  "Software Engineer": ["software","developer","sde","backend","frontend","full stack","full-stack"],
+  "QA Engineer": ["qa","quality","test"],
+  "Data Analyst": ["data analyst","analyst","analytics","data "],
+  "IT Support": ["support","service desk","help desk","technician","it "],
+  "Product": ["product"],
+  "Other": []
+};
+var BLOCK_RE = /no sponsorship|will not sponsor|sponsorship|opt\/cpt|no opt|clearance|citizenship|permanent/i;
+
+function loadState(){ try { return JSON.parse(localStorage.getItem(STORE_KEY)) || null; } catch(e){ return null; } }
+function saveState(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(S)); } catch(e){} }
+var S = loadState() || {profile:{}, xp:0, applied:[], badges:[], streak:0, lastVisit:null,
+                        joinClicked:false, profileRewarded:false};
+
+function todayLocal(){ return new Date().toLocaleDateString("en-CA"); }
+function yesterdayLocal(){ return new Date(Date.now()-864e5).toLocaleDateString("en-CA"); }
+
+function levelFor(xp){ var l = LEVELS[0]; for (var i=0;i<LEVELS.length;i++){ if (xp>=LEVELS[i][0]) l=LEVELS[i]; } return l; }
+function nextLevel(xp){ for (var i=0;i<LEVELS.length;i++){ if (xp<LEVELS[i][0]) return LEVELS[i]; } return null; }
+
+var toastTimer=null;
+function toast(msg){
+  var t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show");
+  clearTimeout(toastTimer); toastTimer=setTimeout(function(){ t.classList.remove("show"); },2200);
+}
+function awardBadge(id){
+  if (S.badges.indexOf(id)>=0) return;
+  S.badges.push(id);
+  var b=null; for (var i=0;i<BADGES.length;i++){ if (BADGES[i].id===id) b=BADGES[i]; }
+  if (b) toast("🏅 Badge earned: "+b.name);
+  saveState();
+}
+function addXP(n, why){
+  var before=levelFor(S.xp)[1];
+  S.xp+=n;
+  var after=levelFor(S.xp)[1];
+  toast("+"+n+" XP · "+why);
+  if (before!==after){
+    setTimeout(function(){ toast("🎉 Level up! You are now "+after); }, 2300);
+    var chip=document.getElementById("xpChip"); chip.classList.remove("lvlup"); void chip.offsetWidth; chip.classList.add("lvlup");
+  }
+  saveState(); render();
+}
+
+function profileStrength(){
+  var p=S.profile, s=0;
+  if (p.name) s+=15;
+  if (p.role) s+=15;
+  if (p.skills && p.skills.length) s+=20;
+  if (p.city) s+=15;
+  if (p.ead) s+=15;
+  if (p.auth) s+=20;
+  return s;
+}
+
+function matchScore(job){
+  var role=S.profile.role; if(!role) return 0;
+  var kws=ROLE_KW[role]||[];
+  var t=(job.title+" "+job.company).toLowerCase();
+  var s=0; for (var i=0;i<kws.length;i++){ if (t.indexOf(kws[i])>=0) s++; }
+  return s;
+}
+
+var showAll=false;
+function esc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+function renderJobs(){
+  var box=document.getElementById("jobs");
+  var role=S.profile.role;
+  var sorted=JOBS.slice();
+  if (role){ sorted.sort(function(a,b){ return matchScore(b)-matchScore(a); }); }
+  var list=showAll?sorted:sorted.slice(0,12);
+  var note=document.getElementById("matchNote");
+  if (role){
+    var n=0; for (var i=0;i<sorted.length;i++){ if (matchScore(sorted[i])>0) n++; }
+    note.textContent=n+" jobs matched for "+role+". Tap Apply to open the posting, then I applied to bank +25 XP.";
+  } else {
+    note.textContent="Set your target role above and we will sort the best fits first.";
+  }
+  var html="";
+  for (var i=0;i<list.length;i++){
+    var j=list[i], applied=S.applied.indexOf(j.url)>=0;
+    var tags="";
+    if (role && matchScore(j)>0) tags+='<span class="matchtag">★ matched</span>';
+    if (BLOCK_RE.test(j.auth||"")) tags+='<span class="authtag">⚠ check the fine print</span>';
+    html+='<div class="job">'
+      +'<div class="job-top"><strong>'+esc(j.title)+'</strong>'+(j.salary?'<span class="sal">'+esc(j.salary)+'</span>':'')+'</div>'
+      +'<div class="job-meta">'+esc(j.company)+' · '+esc(j.location)+' · posted '+esc(j.posted)+'</div>'
+      +(tags?'<div>'+tags+'</div>':'')
+      +'<div class="job-actions">'
+      +'<a class="btn small" href="'+esc(j.url)+'" target="_blank" rel="noopener">Apply</a>'
+      +(applied
+        ? '<button class="btn small ghost" disabled>Applied ✓</button>'
+        : '<button class="btn small ghost" data-apply="'+esc(j.url)+'">I applied · +25 XP</button>')
+      +'</div></div>';
+  }
+  box.innerHTML=html;
+  var btn=document.getElementById("showAllBtn");
+  btn.style.display=showAll?"none":"";
+  btn.textContent="Show all "+sorted.length+" jobs";
+  var btns=box.querySelectorAll("[data-apply]");
+  for (var k=0;k<btns.length;k++){
+    btns[k].addEventListener("click", function(){
+      var u=this.getAttribute("data-apply");
+      if (S.applied.indexOf(u)<0){
+        S.applied.push(u); saveState();
+        if (S.applied.length===1) awardBadge("first");
+        if (S.applied.length>=5) awardBadge("five");
+        addXP(25,"application logged");
+      }
+    });
+  }
+}
+
+function renderBadges(){
+  var box=document.getElementById("badges"), html="";
+  for (var i=0;i<BADGES.length;i++){
+    var b=BADGES[i], got=S.badges.indexOf(b.id)>=0;
+    html+='<div class="badge'+(got?"":" locked")+'"><div class="ico">'+b.icon+'</div><b>'+b.name+'</b><small>'+b.desc+'</small></div>';
+  }
+  box.innerHTML=html;
+}
+
+function render(){
+  var lv=levelFor(S.xp), nx=nextLevel(S.xp);
+  document.getElementById("xpChip").textContent="Level "+(LEVELS.indexOf(lv)+1)+" · "+lv[1]+" · "+S.xp+" XP";
+  var pct=nx?Math.round(100*(S.xp-lv[0])/(nx[0]-lv[0])):100;
+  document.getElementById("xpFill").style.width=pct+"%";
+  document.getElementById("statStreak").textContent=S.streak;
+  document.getElementById("statApplied").textContent=S.applied.length;
+  var st=profileStrength();
+  document.getElementById("statStrength").textContent=st+"%";
+  document.getElementById("strengthFill").style.width=st+"%";
+  document.getElementById("strengthLabel").textContent="Profile strength: "+st+"%"+(st===100?" · Player ready!":"");
+  renderJobs(); renderBadges();
+}
+
+function fillForm(){
+  var p=S.profile;
+  if(p.name) document.getElementById("fName").value=p.name;
+  if(p.role) document.getElementById("fRole").value=p.role;
+  if(p.city) document.getElementById("fCity").value=p.city;
+  if(p.ead) document.getElementById("fEad").value=p.ead;
+  if(p.auth) document.getElementById("fAuth").value=p.auth;
+  var chips=document.querySelectorAll("#skillChips .chip");
+  for (var i=0;i<chips.length;i++){
+    if (p.skills && p.skills.indexOf(chips[i].getAttribute("data-skill"))>=0) chips[i].classList.add("on");
+  }
+}
+
+document.getElementById("skillChips").addEventListener("click", function(e){
+  var c=e.target.closest(".chip"); if(!c) return;
+  c.classList.toggle("on");
+  var skills=[]; var on=document.querySelectorAll("#skillChips .chip.on");
+  for (var i=0;i<on.length;i++) skills.push(on[i].getAttribute("data-skill"));
+  S.profile.skills=skills; saveState(); render();
 });
+
+["fName","fRole","fCity","fEad","fAuth"].forEach(function(id){
+  document.getElementById(id).addEventListener("input", function(){
+    S.profile={ name:document.getElementById("fName").value.trim(),
+                role:document.getElementById("fRole").value,
+                skills:S.profile.skills||[],
+                city:document.getElementById("fCity").value.trim(),
+                ead:document.getElementById("fEad").value.trim(),
+                auth:document.getElementById("fAuth").value };
+    saveState(); render();
+  });
+});
+document.getElementById("fRole").addEventListener("change", function(){ showAll=false; });
+
+document.getElementById("profileForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  if (profileStrength()===100 && !S.profileRewarded){
+    S.profileRewarded=true; awardBadge("profile"); addXP(50,"profile complete");
+  } else if (profileStrength()<100){
+    toast("Almost there · profile is "+profileStrength()+"%");
+  } else {
+    toast("Player saved ✓");
+  }
+  saveState();
+});
+
+document.getElementById("showAllBtn").addEventListener("click", function(){ showAll=true; renderJobs(); });
+
+var joinBtns=document.querySelectorAll("[data-join]");
+for (var i=0;i<joinBtns.length;i++){
+  joinBtns[i].addEventListener("click", function(){
+    if (!S.joinClicked){ S.joinClicked=true; awardBadge("community"); addXP(50,"joined the community"); }
+  });
+}
+
+document.getElementById("leadform").addEventListener("submit", function(e){
+  e.preventDefault();
+  var f=e.target;
+  var name=f.name.value.trim(), email=f.email.value.trim(), phone=f.phone.value.trim(),
+      city=f.city.value.trim(), ead=f.ead.value.trim(), role=f.role.value;
+  var subject=encodeURIComponent("New OPT lead: "+name);
+  var body=encodeURIComponent("Name: "+name+"\nEmail: "+email+"\nPhone: "+phone+"\nCity: "+city+"\nOPT start: "+ead+"\nTarget role: "+role+"\nSource: entry level jobs game");
+  window.location.href="mailto:bobby@nobsai.com?subject="+subject+"&body="+body;
+  document.getElementById("leadnote").textContent="Thanks "+name.split(" ")[0]+". Your email app should open now. Also join the WhatsApp community so you get tomorrow's jobs.";
+});
+
+(function streak(){
+  var t=todayLocal();
+  if (S.lastVisit!==t){
+    S.streak=(S.lastVisit===yesterdayLocal())?S.streak+1:1;
+    S.lastVisit=t;
+    if (S.streak>=3) awardBadge("streak3");
+    saveState();
+    setTimeout(function(){ addXP(10,"daily check-in · "+S.streak+"-day streak"); }, 800);
+  }
+})();
+
+fillForm(); render();
 </script>
 </body>
 </html>
